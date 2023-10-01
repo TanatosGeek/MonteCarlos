@@ -4,10 +4,12 @@
  */
 package Principal;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -22,6 +24,8 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         pintarImagen(this.jLabel1,"src/Imagenes/fondo3.jpg");
+        bloqueo();
+        modTextField();
     }
     
     private void pintarImagen(JLabel lbl,String ruta){
@@ -30,6 +34,35 @@ public class Principal extends javax.swing.JFrame {
                 this.imagen.getImage().getScaledInstance(lbl.getWidth(), lbl.getHeight(), Image.SCALE_DEFAULT));
         lbl.setIcon(this.icono);
         this.repaint();
+    }
+    
+    private void suma(){
+        int num1=Integer.parseInt(jTextField1.getText());
+        int num2=Integer.parseInt(jTextField2.getText());
+        int num3=Integer.parseInt(jTextField3.getText());
+        System.out.println(num1+num2+num3);
+    }
+    
+    private void modTextField(){
+        textbonito("Hola", jTextField1);
+        textbonito("Hola2", jTextField2);
+        textbonito("Hola3", jTextField3);
+    }
+    
+    private void bloqueo(){
+        restricted(3,jTextField1,true);
+        restricted(3,jTextField2,true);
+        restricted(3,jTextField3,true);
+    }
+    
+    private void restricted(int num,JTextField g,boolean soloNum){
+        RestrictedTextField bloqueo = new RestrictedTextField(g);
+        bloqueo.setLimit(num);
+        bloqueo.setOnlyNums(soloNum);
+    }
+    
+    private void textbonito(String texto, JTextField g){
+        ModiText mod = new ModiText(texto,g);
     }
 
     /**
@@ -87,8 +120,8 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Verdana", 3, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Semilla:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 90, -1));
+        jLabel3.setText("Coeficiente:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 130, -1));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 3, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -113,27 +146,15 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-        int key = evt.getKeyChar();
-        boolean numero = key >= 48 && key <= 57;
-        if (!numero){
-            evt.consume();
-        }
+
     }//GEN-LAST:event_jTextField1KeyTyped
 
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
-        int key = evt.getKeyChar();
-        boolean numero = key >= 48 && key <= 57;
-        if (!numero){
-            evt.consume();
-        }
+        
     }//GEN-LAST:event_jTextField2KeyTyped
 
     private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
-        int key = evt.getKeyChar();
-        boolean numero = key >= 48 && key <= 57;
-        if (!numero){
-            evt.consume();
-        }
+        
     }//GEN-LAST:event_jTextField3KeyTyped
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -141,7 +162,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+     suma();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
