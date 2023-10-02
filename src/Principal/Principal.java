@@ -9,6 +9,7 @@ import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -47,7 +48,7 @@ public class Principal extends javax.swing.JFrame {
                 try{
                     n2=Codigo.Numeros();
                     t2.setText(String.valueOf(n2));
-                    Thread.sleep(500);
+                    Thread.sleep(250);
                 }catch(Exception ex){
                     
                 }
@@ -61,7 +62,7 @@ public class Principal extends javax.swing.JFrame {
                 try{
                     n3=Codigo.Numeros();
                     t3.setText(String.valueOf(n3));
-                    Thread.sleep(500);
+                    Thread.sleep(250);
                 }catch(Exception ex){
                     
                 }
@@ -75,7 +76,7 @@ public class Principal extends javax.swing.JFrame {
                 try{
                     n4=Codigo.Numeros();
                     t4.setText(String.valueOf(n4));
-                    Thread.sleep(500);
+                    Thread.sleep(250);
                 }catch(Exception ex){
                     
                 }
@@ -89,6 +90,19 @@ public class Principal extends javax.swing.JFrame {
         pintarImagen(this.jLabel1,"src/Imagenes/fondo3.jpg");
         bloqueo();
         modTextField();
+        btnDetener.setVisible(false);
+        bloqRuleta();
+    }
+    
+    public void bloqRuleta(){
+        t1.setEditable(false);
+        t2.setEditable(false);
+        t3.setEditable(false);
+        t4.setEditable(false);
+        t1.setEnabled(false);
+        t2.setEnabled(false);
+        t3.setEnabled(false);
+        t4.setEnabled(false);
     }
     
     private void pintarImagen(JLabel lbl,String ruta){
@@ -100,11 +114,11 @@ public class Principal extends javax.swing.JFrame {
     }
     
     private void modTextField(){
-        textbonito("Ganador", jTextField1);
+        textbonito("Ganador", txtGanador);
     }
     
     private void bloqueo(){
-        restricted(4,jTextField1,true);
+        restricted(4,txtGanador,true);
     }
     
     private void restricted(int num,JTextField g,boolean soloNum){
@@ -117,8 +131,11 @@ public class Principal extends javax.swing.JFrame {
         ModiText mod = new ModiText(texto,g);
     }
     
-    private void bloqText(){
-        
+    private boolean solo4(){
+        String temporal=txtGanador.getText();
+        if(temporal.length()==4)
+            return true;
+        return false;
     }
 
     /**
@@ -131,14 +148,14 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtGanador = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         Bempezar = new javax.swing.JButton();
         t1 = new javax.swing.JTextField();
         t2 = new javax.swing.JTextField();
         t3 = new javax.swing.JTextField();
         t4 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        btnDetener = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -150,18 +167,18 @@ public class Principal extends javax.swing.JFrame {
         jLabel2.setText("Generador de Números Pseudoaleatorios");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 580, 60));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtGanador.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        txtGanador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtGanadorActionPerformed(evt);
             }
         });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtGanador.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+                txtGanadorKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 190, -1));
+        getContentPane().add(txtGanador, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 190, -1));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 3, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -218,19 +235,19 @@ public class Principal extends javax.swing.JFrame {
         });
         getContentPane().add(t4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 110, 150));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jButton2.setText("Detener");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnDetener.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        btnDetener.setText("Detener");
+        btnDetener.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                btnDetenerMouseClicked(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnDetener.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnDetenerActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
+        getContentPane().add(btnDetener, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 480));
 
         pack();
@@ -240,9 +257,9 @@ public class Principal extends javax.swing.JFrame {
      
     }//GEN-LAST:event_BempezarActionPerformed
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+    private void txtGanadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGanadorKeyTyped
 
-    }//GEN-LAST:event_jTextField1KeyTyped
+    }//GEN-LAST:event_txtGanadorKeyTyped
 
     private void t1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t1ActionPerformed
         // TODO add your handling code here:
@@ -260,31 +277,59 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_t4ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnDetenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetenerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnDetenerActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtGanadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGanadorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtGanadorActionPerformed
 
     private void BempezarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BempezarMouseClicked
-        h1.start();
-        h2.start();
-        h3.start();
-        h4.start();
-        Bempezar.setVisible(false);
+        if(solo4()==true){
+            Bempezar.setVisible(false);
+            txtGanador.setEditable(false);
+            txtGanador.setEnabled(false);
+            btnDetener.setVisible(true);
+            h1.start();
+            h2.start();
+            h3.start();
+            h4.start();
+        }else
+            JOptionPane.showMessageDialog(this,"Ingresa un número de 4 dijitos","Error",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_BempezarMouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void btnDetenerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetenerMouseClicked
         c++;
         if(c==1) h1.suspend();
         if(c==2) h2.suspend();
         if(c==3) h3.suspend();
-        if(c==4) h4.suspend();
-    }//GEN-LAST:event_jButton2MouseClicked
+        if(c==4){
+            h4.suspend();
+            char tmp1=txtGanador.getText().charAt(0);
+            char tmp2=txtGanador.getText().charAt(1);
+            char tmp3=txtGanador.getText().charAt(2);
+            char tmp4=txtGanador.getText().charAt(3);
+            if(tmp1==t1.getText().charAt(0) && tmp2==t2.getText().charAt(0) &&
+               tmp3==t3.getText().charAt(0) && tmp4==t4.getText().charAt(0)){
+                JOptionPane.showMessageDialog(this,"Ganaste 1 Millon de Dolares","Error",JOptionPane.WARNING_MESSAGE);
+                Bempezar.setVisible(true);
+                txtGanador.setEditable(true);
+                txtGanador.setEnabled(true);
+                btnDetener.setVisible(false);
+                c=0;
+            }else{
+                JOptionPane.showMessageDialog(this,"Suerte para la proxima","Error",JOptionPane.WARNING_MESSAGE);
+                Bempezar.setVisible(true);
+                txtGanador.setEditable(true);
+                txtGanador.setEnabled(true);
+                btnDetener.setVisible(false);
+                c=0;
+            }
+        }
+    }//GEN-LAST:event_btnDetenerMouseClicked
 
-        
+       
     
     /**
      * @param args the command line arguments
@@ -323,14 +368,14 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Bempezar;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnDetener;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField t1;
     private javax.swing.JTextField t2;
     private javax.swing.JTextField t3;
     private javax.swing.JTextField t4;
+    private javax.swing.JTextField txtGanador;
     // End of variables declaration//GEN-END:variables
 }
