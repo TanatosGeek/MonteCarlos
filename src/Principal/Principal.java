@@ -20,6 +20,69 @@ public class Principal extends javax.swing.JFrame {
     private ImageIcon imagen;
     private Icon icono;
     
+    Thread h1 = new hilo1();
+    Thread h2 = new hilo2();
+    Thread h3 = new hilo3();
+    Thread h4 = new hilo4();
+    
+    int n1=0, n2=0, n3=0, n4=0, c=0;
+    
+    class hilo1 extends Thread{
+        public void run(){
+            do{
+                try{
+                    n1=Codigo.Numeros();
+                    t1.setText(String.valueOf(n1));
+                    Thread.sleep(500);
+                }catch(Exception ex){
+                    
+                }
+            }while(true);
+        }
+    }
+    
+    class hilo2 extends Thread{
+        public void run(){
+            do{
+                try{
+                    n2=Codigo.Numeros();
+                    t2.setText(String.valueOf(n2));
+                    Thread.sleep(500);
+                }catch(Exception ex){
+                    
+                }
+            }while(true);
+        }
+    }
+    
+    class hilo3 extends Thread{
+        public void run(){
+            do{
+                try{
+                    n3=Codigo.Numeros();
+                    t3.setText(String.valueOf(n3));
+                    Thread.sleep(500);
+                }catch(Exception ex){
+                    
+                }
+            }while(true);
+        }
+    }
+    
+    class hilo4 extends Thread{
+        public void run(){
+            do{
+                try{
+                    n4=Codigo.Numeros();
+                    t4.setText(String.valueOf(n4));
+                    Thread.sleep(500);
+                }catch(Exception ex){
+                    
+                }
+            }while(true);
+        }
+    }
+    
     public Principal() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -36,23 +99,12 @@ public class Principal extends javax.swing.JFrame {
         this.repaint();
     }
     
-    private void suma(){
-        int num1=Integer.parseInt(jTextField1.getText());
-        int num2=Integer.parseInt(jTextField2.getText());
-        int num3=Integer.parseInt(jTextField3.getText());
-        System.out.println(num1+num2+num3);
-    }
-    
     private void modTextField(){
-        textbonito("Hola", jTextField1);
-        textbonito("Hola2", jTextField2);
-        textbonito("Hola3", jTextField3);
+        textbonito("Ganador", jTextField1);
     }
     
     private void bloqueo(){
-        restricted(3,jTextField1,true);
-        restricted(3,jTextField2,true);
-        restricted(3,jTextField3,true);
+        restricted(4,jTextField1,true);
     }
     
     private void restricted(int num,JTextField g,boolean soloNum){
@@ -63,6 +115,10 @@ public class Principal extends javax.swing.JFrame {
     
     private void textbonito(String texto, JTextField g){
         ModiText mod = new ModiText(texto,g);
+    }
+    
+    private void bloqText(){
+        
     }
 
     /**
@@ -76,15 +132,17 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Bempezar = new javax.swing.JButton();
+        t1 = new javax.swing.JTextField();
+        t2 = new javax.swing.JTextField();
+        t3 = new javax.swing.JTextField();
+        t4 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Juego del Casino");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Super Dream", 0, 30)); // NOI18N
@@ -92,79 +150,142 @@ public class Principal extends javax.swing.JFrame {
         jLabel2.setText("Generador de Números Pseudoaleatorios");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 580, 60));
 
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField1KeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 90, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 190, -1));
 
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
-            }
-        });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 90, -1));
-
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField3KeyTyped(evt);
-            }
-        });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 90, -1));
-
-        jLabel3.setFont(new java.awt.Font("Verdana", 3, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Verdana", 3, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Coeficiente:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 130, -1));
+        jLabel3.setText("Numero:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 180, -1));
 
-        jLabel4.setFont(new java.awt.Font("Verdana", 3, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Inicio:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 90, -1));
-
-        jLabel5.setFont(new java.awt.Font("Verdana", 3, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Final:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 100, -1));
-
-        jButton1.setText("Generar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        Bempezar.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        Bempezar.setText("Empezar");
+        Bempezar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BempezarMouseClicked(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 440, -1, -1));
+        Bempezar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BempezarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Bempezar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, -1, -1));
+
+        t1.setFont(new java.awt.Font("Tahoma", 1, 150)); // NOI18N
+        t1.setText("9");
+        t1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(t1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 110, 150));
+
+        t2.setFont(new java.awt.Font("Tahoma", 1, 150)); // NOI18N
+        t2.setText("9");
+        t2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(t2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 110, 150));
+
+        t3.setFont(new java.awt.Font("Tahoma", 1, 150)); // NOI18N
+        t3.setText("9");
+        t3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(t3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 110, 150));
+
+        t4.setFont(new java.awt.Font("Tahoma", 1, 150)); // NOI18N
+        t4.setText("9");
+        t4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(t4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 110, 150));
+
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jButton2.setText("Detener");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BempezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BempezarActionPerformed
+     
+    }//GEN-LAST:event_BempezarActionPerformed
+
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
 
     }//GEN-LAST:event_jTextField1KeyTyped
 
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
-        
-    }//GEN-LAST:event_jTextField2KeyTyped
-
-    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
-        
-    }//GEN-LAST:event_jTextField3KeyTyped
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void t1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_t1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     suma();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void t2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t2ActionPerformed
 
+    private void t3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t3ActionPerformed
+
+    private void t4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void BempezarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BempezarMouseClicked
+        h1.start();
+        h2.start();
+        h3.start();
+        h4.start();
+        Bempezar.setVisible(false);
+    }//GEN-LAST:event_BempezarMouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        c++;
+        if(c==1) h1.suspend();
+        if(c==2) h2.suspend();
+        if(c==3) h3.suspend();
+        if(c==4) h4.suspend();
+    }//GEN-LAST:event_jButton2MouseClicked
+
+        
+    
     /**
      * @param args the command line arguments
      */
@@ -201,14 +322,15 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton Bempezar;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField t1;
+    private javax.swing.JTextField t2;
+    private javax.swing.JTextField t3;
+    private javax.swing.JTextField t4;
     // End of variables declaration//GEN-END:variables
 }
