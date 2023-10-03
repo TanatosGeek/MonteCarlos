@@ -37,7 +37,7 @@ public class Principal extends javax.swing.JFrame {
                 try{
                     n1=Codigo.Numeros();
                     t1.setText(String.valueOf(n1));
-                    Thread.sleep(500);
+                    Thread.sleep(800);
                 }catch(Exception ex){
                     
                 }
@@ -52,7 +52,7 @@ public class Principal extends javax.swing.JFrame {
                 try{
                     n2=Codigo.Numeros();
                     t2.setText(String.valueOf(n2));
-                    Thread.sleep(500);
+                    Thread.sleep(800);
                 }catch(Exception ex){
                     
                 }
@@ -67,7 +67,7 @@ public class Principal extends javax.swing.JFrame {
                 try{
                     n3=Codigo.Numeros();
                     t3.setText(String.valueOf(n3));
-                    Thread.sleep(500);
+                    Thread.sleep(800);
                 }catch(Exception ex){
                     
                 }
@@ -82,7 +82,7 @@ public class Principal extends javax.swing.JFrame {
                 try{
                     n4=Codigo.Numeros();
                     t4.setText(String.valueOf(n4));
-                    Thread.sleep(500);
+                    Thread.sleep(800);
                 }catch(Exception ex){
                     
                 }
@@ -319,35 +319,80 @@ public class Principal extends javax.swing.JFrame {
         }else
             JOptionPane.showMessageDialog(this,"Ingresa un número de 4 dijitos","Error",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_BempezarMouseClicked
+private boolean acierto(int pos, char obtenido){
+    return txtGanador.getText().charAt(pos)==obtenido;
+}
 
     private void btnDetenerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetenerMouseClicked
         c++;
-        if(c==1) h1.suspend();
-        if(c==2) h2.suspend();
-        if(c==3) h3.suspend();
-        if(c==4){
+        switch(c){
+            case 1:
+                
+        if( acierto(c-1,t1.getText().charAt(0)))
+            h1.suspend();
+        else{
+            h1.suspend();
+            h2.suspend();
+            h3.suspend();
             h4.suspend();
-            char tmp1=txtGanador.getText().charAt(0);
-            char tmp2=txtGanador.getText().charAt(1);
-            char tmp3=txtGanador.getText().charAt(2);
-            char tmp4=txtGanador.getText().charAt(3);
-            if(tmp1==t1.getText().charAt(0) && tmp2==t2.getText().charAt(0) &&
-               tmp3==t3.getText().charAt(0) && tmp4==t4.getText().charAt(0)){
-                JOptionPane.showMessageDialog(this,"Ganaste 1 Millon de Dolares","Error",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Suerte para la proxima","Error",JOptionPane.WARNING_MESSAGE);
                 Bempezar.setVisible(true);
                 txtGanador.setEditable(true);
                 txtGanador.setEnabled(true);
                 btnDetener.setVisible(false);
                 c=0;
-            }else{
-                JOptionPane.showMessageDialog(this,"Suerte para la proxima","Error",JOptionPane.WARNING_MESSAGE);
-                Bempezar.setVisible(true);
-                txtGanador.setEditable(true);
-                txtGanador.setEnabled(true);
-                btnDetener.setVisible(false);
-                c=0;
-            }
         }
+        break;
+            case 2:
+        if(acierto(c-1,t2.getText().charAt(0)))
+             h2.suspend();
+        else{
+            h2.suspend();
+            h3.suspend();
+            h4.suspend();
+            JOptionPane.showMessageDialog(this,"Suerte para la proxima","Error",JOptionPane.WARNING_MESSAGE);
+                Bempezar.setVisible(true);
+                txtGanador.setEditable(true);
+                txtGanador.setEnabled(true);
+                btnDetener.setVisible(false);
+                c=0;
+        }
+        break;
+        case 3:
+        if(acierto(c-1,t3.getText().charAt(0)))
+             h3.suspend();
+        else{
+            h3.suspend();
+            h4.suspend();
+            JOptionPane.showMessageDialog(this,"Suerte para la proxima","Error",JOptionPane.WARNING_MESSAGE);
+                Bempezar.setVisible(true);
+                txtGanador.setEditable(true);
+                txtGanador.setEnabled(true);
+                btnDetener.setVisible(false);
+                c=0;
+        }
+        break;
+        case 4:
+        if(acierto(c-1,t4.getText().charAt(0))){
+             h4.suspend();
+             JOptionPane.showMessageDialog(this,"Ganaste un millon de dolares","Error",JOptionPane.WARNING_MESSAGE);
+             Bempezar.setVisible(true);
+                txtGanador.setEditable(true);
+                txtGanador.setEnabled(true);
+                btnDetener.setVisible(false);
+                c=0;
+        }
+        else{
+            h4.suspend();
+            JOptionPane.showMessageDialog(this,"Suerte para la proxima","Error",JOptionPane.WARNING_MESSAGE);
+            Bempezar.setVisible(true);
+                txtGanador.setEditable(true);
+                txtGanador.setEnabled(true);
+                btnDetener.setVisible(false);
+                c=0;
+        }
+        break;
+    }
     }//GEN-LAST:event_btnDetenerMouseClicked
 
        
