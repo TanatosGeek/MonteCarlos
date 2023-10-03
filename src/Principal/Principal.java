@@ -17,90 +17,94 @@ import javax.swing.JTextField;
  * @author mayka
  */
 public class Principal extends javax.swing.JFrame {
-    
+
     private ImageIcon imagen;
     private Icon icono;
-    
+
     Thread h1 = new hilo1();
     Thread h2 = new hilo2();
     Thread h3 = new hilo3();
     Thread h4 = new hilo4();
-    
-    int n1=0, n2=0, n3=0, n4=0, c=0, s = 0;
-    
+
+    int n1 = 0, n2 = 0, n3 = 0, n4 = 0, c = 0, s = 0;
+
     boolean bandera = true;
-    
-    class hilo1 extends Thread{
+
+    class hilo1 extends Thread {
+
         @Override
-        public void run(){
-            do{
-                try{
-                    n1=Codigo.Numeros();
+        public void run() {
+            do {
+                try {
+                    n1 = Codigo.Numeros();
                     t1.setText(String.valueOf(n1));
                     Thread.sleep(800);
-                }catch(Exception ex){
-                    
+                } catch (Exception ex) {
+
                 }
-            }while(true);
+            } while (true);
         }
     }
-    
-    class hilo2 extends Thread{
+
+    class hilo2 extends Thread {
+
         @Override
-        public void run(){
-            do{
-                try{
-                    n2=Codigo.Numeros();
+        public void run() {
+            do {
+                try {
+                    n2 = Codigo.Numeros();
                     t2.setText(String.valueOf(n2));
                     Thread.sleep(800);
-                }catch(Exception ex){
-                    
+                } catch (Exception ex) {
+
                 }
-            }while(true);
+            } while (true);
         }
     }
-    
-    class hilo3 extends Thread{
+
+    class hilo3 extends Thread {
+
         @Override
-        public void run(){
-            do{
-                try{
-                    n3=Codigo.Numeros();
+        public void run() {
+            do {
+                try {
+                    n3 = Codigo.Numeros();
                     t3.setText(String.valueOf(n3));
                     Thread.sleep(800);
-                }catch(Exception ex){
-                    
+                } catch (Exception ex) {
+
                 }
-            }while(true);
+            } while (true);
         }
     }
-    
-    class hilo4 extends Thread{
+
+    class hilo4 extends Thread {
+
         @Override
-        public void run(){
-            do{
-                try{
-                    n4=Codigo.Numeros();
+        public void run() {
+            do {
+                try {
+                    n4 = Codigo.Numeros();
                     t4.setText(String.valueOf(n4));
                     Thread.sleep(800);
-                }catch(Exception ex){
-                    
+                } catch (Exception ex) {
+
                 }
-            }while(true);
+            } while (true);
         }
     }
-    
+
     public Principal() {
         initComponents();
         this.setLocationRelativeTo(null);
-        pintarImagen(this.jLabel1,"src/Imagenes/fondo3.jpg");
+        pintarImagen(this.jLabel1, "src/Imagenes/fondo3.jpg");
         bloqueo();
         modTextField();
         btnDetener.setVisible(false);
         bloqRuleta();
     }
-    
-    public void bloqRuleta(){
+
+    public void bloqRuleta() {
         t1.setEditable(false);
         t2.setEditable(false);
         t3.setEditable(false);
@@ -110,37 +114,38 @@ public class Principal extends javax.swing.JFrame {
         t3.setEnabled(false);
         t4.setEnabled(false);
     }
-    
-    private void pintarImagen(JLabel lbl,String ruta){
-        this.imagen=new ImageIcon(ruta);
+
+    private void pintarImagen(JLabel lbl, String ruta) {
+        this.imagen = new ImageIcon(ruta);
         this.icono = new ImageIcon(
                 this.imagen.getImage().getScaledInstance(lbl.getWidth(), lbl.getHeight(), Image.SCALE_DEFAULT));
         lbl.setIcon(this.icono);
         this.repaint();
     }
-    
-    private void modTextField(){
+
+    private void modTextField() {
         textbonito("Ganador", txtGanador);
     }
-    
-    private void bloqueo(){
-        restricted(4,txtGanador,true);
+
+    private void bloqueo() {
+        restricted(4, txtGanador, true);
     }
-    
-    private void restricted(int num,JTextField g,boolean soloNum){
+
+    private void restricted(int num, JTextField g, boolean soloNum) {
         RestrictedTextField bloqueo = new RestrictedTextField(g);
         bloqueo.setLimit(num);
         bloqueo.setOnlyNums(soloNum);
     }
-    
-    private void textbonito(String texto, JTextField g){
-        ModiText mod = new ModiText(texto,g);
+
+    private void textbonito(String texto, JTextField g) {
+        ModiText mod = new ModiText(texto, g);
     }
-    
-    private boolean solo4(){
-        String temporal=txtGanador.getText();
-        if(temporal.length()==4)
+
+    private boolean solo4() {
+        String temporal = txtGanador.getText();
+        if (temporal.length() == 4) {
             return true;
+        }
         return false;
     }
 
@@ -260,7 +265,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BempezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BempezarActionPerformed
-     
+
     }//GEN-LAST:event_BempezarActionPerformed
 
     private void txtGanadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGanadorKeyTyped
@@ -293,110 +298,81 @@ public class Principal extends javax.swing.JFrame {
 
     private void BempezarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BempezarMouseClicked
         //if()
-        if(solo4()==true){
+        if (solo4() == true) {
             Bempezar.setVisible(false);
             txtGanador.setEditable(false);
             txtGanador.setEnabled(false);
             btnDetener.setVisible(true);
             System.out.println("hola hola");
-            
-            if(bandera == false){
-                
+
+            if (bandera == false) {
+
                 System.out.println("false");
-            h1.resume();
-            h2.resume();
-            h3.resume();
-            h4.resume();
-            
-            }else {
+                h1.resume();
+                h2.resume();
+                h3.resume();
+                h4.resume();
+
+            } else {
                 System.out.println("true");
-              h1.start();
-              h2.start();
-              h3.start();
-              h4.start();
-            bandera = false;
+                h1.start();
+                h2.start();
+                h3.start();
+                h4.start();
+                bandera = false;
             }
-        }else
-            JOptionPane.showMessageDialog(this,"Ingresa un número de 4 dijitos","Error",JOptionPane.WARNING_MESSAGE);
+        } else
+            JOptionPane.showMessageDialog(this, "Ingresa un número de 4 dijitos", "Error", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_BempezarMouseClicked
-private boolean acierto(int pos, char obtenido){
-    return txtGanador.getText().charAt(pos)==obtenido;
-}
+    private boolean acierto(int pos, char obtenido) {
+        return txtGanador.getText().charAt(pos) == obtenido;
+    }
 
     private void btnDetenerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetenerMouseClicked
         c++;
-        switch(c){
+        switch (c) {
             case 1:
-                
-        if( acierto(c-1,t1.getText().charAt(0)))
-            h1.suspend();
-        else{
-            h1.suspend();
-            h2.suspend();
-            h3.suspend();
-            h4.suspend();
-            JOptionPane.showMessageDialog(this,"Suerte para la proxima","Error",JOptionPane.WARNING_MESSAGE);
-                Bempezar.setVisible(true);
-                txtGanador.setEditable(true);
-                txtGanador.setEnabled(true);
-                btnDetener.setVisible(false);
-                c=0;
-        }
-        break;
+                    h1.suspend();
+                 if(!acierto(c - 1, t1.getText().charAt(0))) {
+                    h2.suspend();
+                    h3.suspend();
+                    h4.suspend();
+                    accion("Suerte para la próxima");
+                }
+                break;
             case 2:
-        if(acierto(c-1,t2.getText().charAt(0)))
-             h2.suspend();
-        else{
-            h2.suspend();
-            h3.suspend();
-            h4.suspend();
-            JOptionPane.showMessageDialog(this,"Suerte para la proxima","Error",JOptionPane.WARNING_MESSAGE);
-                Bempezar.setVisible(true);
-                txtGanador.setEditable(true);
-                txtGanador.setEnabled(true);
-                btnDetener.setVisible(false);
-                c=0;
+                    h2.suspend();
+                if(!acierto(c - 1, t2.getText().charAt(0))) {
+                    h3.suspend();
+                    h4.suspend();
+                    accion("Suerte para la próxima");
+                }
+                break;
+            case 3:
+                    h3.suspend();
+                if(!acierto(c - 1, t3.getText().charAt(0))) {
+                    h4.suspend();
+                    accion("Suerte para la próxima");
+                }
+                break;
+            case 4:
+                     h4.suspend();
+                if (acierto(c - 1, t4.getText().charAt(0))) 
+                    accion("Has Ganado");
+                 else
+                    accion("Suerte para la próxima");
+                break;
         }
-        break;
-        case 3:
-        if(acierto(c-1,t3.getText().charAt(0)))
-             h3.suspend();
-        else{
-            h3.suspend();
-            h4.suspend();
-            JOptionPane.showMessageDialog(this,"Suerte para la proxima","Error",JOptionPane.WARNING_MESSAGE);
-                Bempezar.setVisible(true);
-                txtGanador.setEditable(true);
-                txtGanador.setEnabled(true);
-                btnDetener.setVisible(false);
-                c=0;
-        }
-        break;
-        case 4:
-        if(acierto(c-1,t4.getText().charAt(0))){
-             h4.suspend();
-             JOptionPane.showMessageDialog(this,"Ganaste un millon de dolares","Error",JOptionPane.WARNING_MESSAGE);
-             Bempezar.setVisible(true);
-                txtGanador.setEditable(true);
-                txtGanador.setEnabled(true);
-                btnDetener.setVisible(false);
-                c=0;
-        }
-        else{
-            h4.suspend();
-            JOptionPane.showMessageDialog(this,"Suerte para la proxima","Error",JOptionPane.WARNING_MESSAGE);
-            Bempezar.setVisible(true);
-                txtGanador.setEditable(true);
-                txtGanador.setEnabled(true);
-                btnDetener.setVisible(false);
-                c=0;
-        }
-        break;
-    }
     }//GEN-LAST:event_btnDetenerMouseClicked
+    public void accion(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        Bempezar.setVisible(true);
+        txtGanador.setEditable(true);
+        txtGanador.setEnabled(true);
+        btnDetener.setVisible(false);
+        c=0;
+    }
 
-       
-    
     /**
      * @param args the command line arguments
      */
