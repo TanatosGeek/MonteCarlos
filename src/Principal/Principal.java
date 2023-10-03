@@ -26,9 +26,12 @@ public class Principal extends javax.swing.JFrame {
     Thread h3 = new hilo3();
     Thread h4 = new hilo4();
     
-    int n1=0, n2=0, n3=0, n4=0, c=0;
+    int n1=0, n2=0, n3=0, n4=0, c=0, s = 0;
+    
+    boolean bandera = true;
     
     class hilo1 extends Thread{
+        @Override
         public void run(){
             do{
                 try{
@@ -43,12 +46,13 @@ public class Principal extends javax.swing.JFrame {
     }
     
     class hilo2 extends Thread{
+        @Override
         public void run(){
             do{
                 try{
                     n2=Codigo.Numeros();
                     t2.setText(String.valueOf(n2));
-                    Thread.sleep(250);
+                    Thread.sleep(500);
                 }catch(Exception ex){
                     
                 }
@@ -57,12 +61,13 @@ public class Principal extends javax.swing.JFrame {
     }
     
     class hilo3 extends Thread{
+        @Override
         public void run(){
             do{
                 try{
                     n3=Codigo.Numeros();
                     t3.setText(String.valueOf(n3));
-                    Thread.sleep(250);
+                    Thread.sleep(500);
                 }catch(Exception ex){
                     
                 }
@@ -71,12 +76,13 @@ public class Principal extends javax.swing.JFrame {
     }
     
     class hilo4 extends Thread{
+        @Override
         public void run(){
             do{
                 try{
                     n4=Codigo.Numeros();
                     t4.setText(String.valueOf(n4));
-                    Thread.sleep(250);
+                    Thread.sleep(500);
                 }catch(Exception ex){
                     
                 }
@@ -286,15 +292,30 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtGanadorActionPerformed
 
     private void BempezarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BempezarMouseClicked
+        //if()
         if(solo4()==true){
             Bempezar.setVisible(false);
             txtGanador.setEditable(false);
             txtGanador.setEnabled(false);
             btnDetener.setVisible(true);
-            h1.start();
-            h2.start();
-            h3.start();
-            h4.start();
+            System.out.println("hola hola");
+            
+            if(bandera == false){
+                
+                System.out.println("false");
+            h1.resume();
+            h2.resume();
+            h3.resume();
+            h4.resume();
+            
+            }else {
+                System.out.println("true");
+              h1.start();
+              h2.start();
+              h3.start();
+              h4.start();
+            bandera = false;
+            }
         }else
             JOptionPane.showMessageDialog(this,"Ingresa un número de 4 dijitos","Error",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_BempezarMouseClicked
